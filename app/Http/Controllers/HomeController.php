@@ -83,17 +83,20 @@ class HomeController extends Controller
     // ->has(Model::factory()->count(5), 'models') // Correct usage
     // ->create();
 
-    User::factory()
-      ->has(Car::factory()->count(5),'favouriteCars')
-      ->create();
+    // User::factory()
+    //   ->has(Car::factory()->count(5),'favouriteCars')
+    //   ->create();
 
-    Maker::factory()->create();
+    // Maker::factory()->create();
 
-    
+    $cars = Car::where('published_at', '<', now())
+    ->orderBy('published_at','desc')
+    ->limit(30)
+    ->get();
 
 
 
-         return view("home.index");
+         return view("home.index", ["cars"=> $cars]);
         
     }
 }

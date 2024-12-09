@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Model as MyModel;
 
 class Car extends Model
 {
@@ -56,7 +57,7 @@ class Car extends Model
     }
 
     public function model(): BelongsTo{
-        return $this->belongsTo(Model::class);
+        return $this->belongsTo(MyModel::class);
     }
 
     public function owner(): BelongsTo{

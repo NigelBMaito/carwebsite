@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Model as MyModel;
 
 class Maker extends Model
 {
@@ -19,6 +20,7 @@ class Maker extends Model
     }
 
     public function models(): HasMany{
-        return $this->hasMany(Model::class);
+
+        return $this->hasMany(MyModel::class);
     }
 }
