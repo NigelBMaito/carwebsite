@@ -74,12 +74,15 @@ class CarController extends Controller
     ->with(['primaryImage','carType','city','fuelType','maker','model'])
         ->orderBy('published_at', 'desc');
 
-    $carCount = $query->count();
-    $cars = $query->limit(30)->get();
+        $query->join('cities','cities.id','=','cars.city_id')
+        ->where('cities.state_id', 1);
+
+        $query->select('cars.*', 'cities.name as city_name');
+
+        $cars = $query->paginate(15);
 
     return view('car.search', [
-        'cars' => $cars,
-        'carCount' => $carCount,
+        'cars' => $cars
     ]);
 }
      public function watchlist(){
