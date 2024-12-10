@@ -13,7 +13,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = User::find(1)
+        $cars = User::find(3)
         ->cars( )
         ->orderBy("created_at","desc")
         ->get();
@@ -80,5 +80,11 @@ class CarController extends Controller
         'carCount' => $carCount,
     ]);
 }
+     public function watchlist(){
+        //Todo we come back to this
+        $cars= User::find(2)->favouriteCars;
+
+        return view('car.watchlist',['cars'=> $cars]);
+     }
 
 }

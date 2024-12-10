@@ -16,7 +16,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($cars as $car )
+                    @forelse ($cars as $car )
                     
                     <tr>
                       <td>
@@ -90,9 +90,17 @@
                           delete
                         </button>
                       </td>
+                    
                     </tr>
+                    @empty
+                       <tr>
+                        <td colspan="5" class="text-center p-large">
+                          You don't have any cars yet. <a href={{route("car.create")}}>Add new car</a>
 
-                    @endforeach
+                        </td>
+                       </tr>
+
+                    @endforelse
                  
                   </tbody>
                 </table>
