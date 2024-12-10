@@ -14,7 +14,8 @@ class CarController extends Controller
     public function index()
     {
         $cars = User::find(3)
-        ->cars( )
+        ->cars()
+        ->with(['primaryImage','model','model'])
         ->orderBy("created_at","desc")
         ->get();
         return view('car.index',['cars'=> $cars]);
@@ -70,6 +71,7 @@ class CarController extends Controller
     public function search()
 {
     $query = Car::where('published_at', '<', now())
+    ->with(['primaryImage','carType','city','fuelType','maker','model'])
         ->orderBy('published_at', 'desc');
 
     $carCount = $query->count();
@@ -82,7 +84,10 @@ class CarController extends Controller
 }
      public function watchlist(){
         //Todo we come back to this
-        $cars= User::find(2)->favouriteCars;
+        $cars= User::find(2)
+        ->favouriteCars()
+        ->with(['primaryImage','carType','city','fuelType','maker','model'])
+        ->get();
 
         return view('car.watchlist',['cars'=> $cars]);
      }
