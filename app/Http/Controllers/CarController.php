@@ -13,11 +13,11 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = User::find(3)
+        $cars = User::find(1)
         ->cars()
         ->with(['primaryImage','model','model'])
         ->orderBy("created_at","desc")
-        ->get();
+        ->paginate(15);
         return view('car.index',['cars'=> $cars]);
     }
 
@@ -90,7 +90,7 @@ class CarController extends Controller
         $cars= User::find(2)
         ->favouriteCars()
         ->with(['primaryImage','carType','city','fuelType','maker','model'])
-        ->get();
+        ->paginate(15);
 
         return view('car.watchlist',['cars'=> $cars]);
      }
